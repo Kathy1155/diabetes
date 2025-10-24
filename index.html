@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>糖尿病小護士</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <header>
+        <nav id="navbar">
+        <a href="index.html">首頁</a>
+        <a href="signup.html">註冊</a>
+        <a href="login.html">登入</a>
+        <!-- 「填寫」「紀錄」要登入後才會加進來 -->
+        </nav>
+
+        <h1>糖尿病小護士</h1>
+    </header>
+
+    <!-- 主要內容 -->
+    <main>
+        <section>
+            <h2>什麼是糖尿病？</h2>
+            <p>
+                糖尿病是一種身體處理糖分出問題的疾病。當我們吃下食物後，身體需要一種叫做
+                <b>胰島素</b>的東西來幫助把糖分送進細胞裡，讓我們有力氣活動。
+            </p>
+            <p>
+                如果胰島素不夠或沒作用，糖分就會留在血液裡，讓血糖變得太高，這就是糖尿病。
+            </p>
+            <p>
+                得了糖尿病的人會常常口渴、想上廁所、覺得累，但只要好好控制飲食和運動，就能把它照顧好。
+            </p>
+        </section>
+
+        <section>
+            <h2>常見糖尿病種類</h2>
+            <img 
+                src="https://www-ws.gov.taipei/001/Upload/684/relpic/45208/137453/9c3a93a9-4be9-49f0-a9f2-13ecc4940023.jpg" 
+                alt="哎呀...網路不太好！！"
+            />
+
+            <table>
+                <caption>糖尿病種類簡易表格整理</caption>
+                <thead>
+                    <tr>
+                        <th>種類</th>
+                        <th>原因</th>
+                        <th>特點</th>
+                        <th>易發族群</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>第一型</td>
+                        <td>遺傳</td>
+                        <td>無胰島素，終身注射</td>
+                        <td>小孩、青少年</td>
+                    </tr>
+                    <tr>
+                        <td>第二型</td>
+                        <td>家族病、生活</td>
+                        <td>有胰島素沒作用，藥+生活習慣改善</td>
+                        <td>中年人、長輩</td>
+                    </tr>
+                    <tr>
+                        <td>妊娠型</td>
+                        <td>懷孕賀爾蒙變化</td>
+                        <td>通常生完恢復</td>
+                        <td>懷孕女性</td>
+                    </tr>
+                    <tr>
+                        <td>其他型</td>
+                        <td>其他疾病引發</td>
+                        <td>與特定疾病或藥物有關，可預防</td>
+                        <td>無</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ol>
+                <li>
+                    <strong>第一型糖尿病(遺傳性)</strong>
+                    <p>這種糖尿病通常在年紀很小的時候就會發病...</p>
+                    <ul>
+                        <li>特點：年紀小、發病快、需要終身注射胰島素。</li>
+                        <li>常見於：小孩、青少年，也叫做「兒童型糖尿病」</li>
+                    </ul>   
+                </li>
+                <li>
+                    <strong>第二型糖尿病(家族病史＋生活習慣)</strong>
+                    <p>這是 <b>最常見</b> 的糖尿病類型...</p>
+                    <ul>
+                        <li>特點：發病慢、不一定要打針，可用藥＋生活改善控制。</li>
+                        <li>常見於：中年人、長輩，但現在也有年輕人因生活習慣不良而得到。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>妊娠糖尿病(懷孕賀爾蒙變化)</strong>
+                    <p>這是 <b>懷孕中的女性</b> 才會有的糖尿病...</p>
+                    <ul>
+                        <li>特點：懷孕期間才發生，通常生完會恢復。</li>
+                        <li>需要注意：控制不好會影響胎兒健康，也可能增加媽媽未來得糖尿病的機率。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>其他糖尿病(其他疾病引起)</strong>
+                    <p>除了以上三種，還有一些比較少見的糖尿病...</p>
+                    <ul>
+                        <li>胰臟本身的疾病（像胰臟炎、胰臟癌）</li>
+                        <li>某些內分泌疾病（賀爾蒙分泌異常）</li>
+                        <li>長期使用某些藥物（如類固醇）</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>最新諮詢</h2>
+            <div class="consult-box" id="latestConsults"></div>
+            <a href="consult.html">查看更多 →</a>
+
+            <script src="script.js"></script>
+        </section>
+
+        <section>
+            <h3>延伸閱讀：衛服部-糖尿病</h3>
+            <a href="https://www.hpa.gov.tw/Pages/List.aspx?nodeid=359" target="_blank">
+                點我前往官方說明
+            </a>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2025 糖尿病小護士</p>
+    </footer>
+</body>
+</html>

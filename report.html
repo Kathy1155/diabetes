@@ -1,0 +1,126 @@
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <title>狀態記錄頁面</title>
+</head>
+
+<table border="1" style="margin: 0 auto; text-align: center">
+    <nav id="navbar">
+        <a href="index.html">首頁</a>
+        <a href="report.html">紀錄</a>
+        <a href="record.html">填寫</a>
+        <a href="signup.html">註冊</a>
+        <a href="login.html">登入</a>
+    </nav>
+
+  <h1>糖尿病病患紀錄表</h1>
+
+  <button id="btnExportCSV" class="btn secondary">匯出 CSV</button>
+
+  <thead>
+    <tr>
+      <th>日期</th>
+      <th>體重(Kg)</th>
+      <th>運動狀況</th>
+      <th>藥物使用</th>
+      <th>餐前血糖</th>
+      <th>餐後血糖</th>
+      <th>血糖狀態</th>
+      <th>備註</th>
+    </tr>
+  </thead>
+  <tbody id="reportBody"></tbody>
+
+  <div style="width: 65%; margin: 20px auto">
+    <canvas id="glucoseChart"></canvas>
+  </div>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const records = JSON.parse(localStorage.getItem("records")) || [];
+    const tbody = document.getElementById("reportBody");
+
+    function getGlucoseStatus(v) {
+      const val = parseInt(v, 10);
+      if (isNaN(val)) return "未知";
+      if (val < 70) return "過低";
+      if (val <= 140) return "正常";
+      if (val <= 200) return "偏高";
+      return "過高";
+    }
+
+    records.forEach((record) => {
+      const row = document.createElement("tr");
+
+      const exerciseText =
+        record.exercise === "yes"
+          ? "有" + (record.exercise_detail ? `，${record.exercise_detail}` : "")
+          : "沒有";
+
+      const medText =
+        record.medication === "yes"
+          ? record.medication_time +
+            (record.medication_name ? `，${record.medication_name}` : "")
+          : "沒有";
+
+      row.innerHTML = `
+            <td>${record.date}</td>
+            <td>${record.weight}</td>
+            <td>${exerciseText}</td>
+            <td>${medText}</td>
+            <td>${record.bf_glucose}</td>
+            <td>${record.af_glucose}</td>
+            <td>${getGlucoseStatus(record.af_glucose)}</td>
+            <td>${record.remark || ""}</td>
+        `;
+
+      tbody.appendChild(row);
+    });
+
+    const ctx = document.getElementById("glucoseChart").getContext("2d");
+
+    const labels = records.map((r) => r.date);
+    const bfData = records.map((r) => r.bf_glucose);
+    const afData = records.map((r) => r.af_glucose);
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "餐前血糖",
+            data: bfData,
+            borderColor: "blue",
+            fill: false,
+          },
+          {
+            label: "餐後血糖",
+            data: afData,
+            borderColor: "red",
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "血糖值 (mg/dL)",
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "日期",
+            },
+          },
+        },
+      },
+    });
+  });
+</script>

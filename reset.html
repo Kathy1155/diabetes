@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>忘記密碼</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- 導覽列 -->
+  <nav id="navbar">
+    <a href="index.html">首頁</a>
+    <a href="signup.html">註冊</a>
+    <a href="login.html">登入</a>
+  </nav>
+
+  <h1>重設密碼</h1>
+
+  <div id="resetContainer">
+    <!-- 第一步：輸入帳號 -->
+    <form id="resetForm">
+      <label for="resetUsername">帳號名：</label>
+      <input type="text" id="resetUsername" required />
+      <button type="submit">確認帳號</button>
+    </form>
+
+    <!-- 第二步：顯示安全問題，輸入答案 -->
+    <div id="securitySection" class="hidden">
+      <p id="securityQuestionText"></p>
+      <label for="securityAnswerInput">答案：</label>
+      <input type="text" id="securityAnswerInput" required />
+      <button type="button" id="checkAnswerBtn">送出答案</button>
+    </div>
+
+    <!-- 第三步：輸入新密碼 -->
+    <div id="newPasswordSection" class="hidden">
+      <label for="newPassword">新密碼：</label>
+      <input type="password" id="newPassword" required />
+      <button type="button" class="btn secondary" id="btnTogglePwd">顯示</button>
+      <button type="button" id="resetPasswordBtn">重設密碼</button>
+    </div>
+  </div>
+
+  <p id="resetMessage" aria-live="polite"></p>
+</body>
+</html>

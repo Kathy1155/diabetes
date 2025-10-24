@@ -1,0 +1,32 @@
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <title>登入</title>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">首頁</a>
+        <a href="signup.html">註冊</a>
+        <a href="login.html">登入</a>
+    </nav>
+
+    <h1>登入</h1>
+
+    <form id="loginForm">
+        <label for="username">帳號名：</label>
+        <input type="text" id="username" required><br><br>
+
+        <label for="password">密碼</label>
+        <input type="password" id="password" required><br><br>
+        <button type="button" class="btn secondary" id="btnTogglePwd">顯示</button>
+
+
+        <a href="reset.html">忘記密碼？</a><br><br>
+
+        <button type="submit">登入</button>
+    </form>
+
+    <p id="loginMessage" aria-live="polite"></p>
+
+</body>

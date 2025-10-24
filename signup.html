@@ -1,0 +1,44 @@
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <title>註冊</title>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="signup.html">註冊</a>
+    <a href="login.html">登入</a>
+  </nav>
+
+  <h1>註冊</h1>
+
+  <!-- 加上 id -->
+  <form id="signupForm">
+    <label for="username">帳號名：</label>
+    <input type="text" id="username" required><br><br>
+
+    <label for="password">密碼：</label>
+    <!-- 密碼建議用 type="password" 而不是 number -->
+    <input type="password" id="password" required><br><br>
+    <button type="button" class="btn secondary" id="btnTogglePwd">顯示</button>
+
+    <label for="securityQuestion">安全問題：</label>
+    <select id="securityQuestion" required>
+      <option value="" disabled selected>請選擇問題</option>
+      <option value="pet">你的小學名字是？</option>
+      <option value="food">你最喜歡的食物是？</option>
+      <option value="movie">你最喜歡的電影是？</option>
+    </select>
+    <br><br>
+
+    <label for="securityAnswer">答案：</label>
+    <input type="text" id="securityAnswer" required>
+    <br><br>
+
+    <button type="submit">註冊</button>
+  </form>
+
+  <p id="message"></p> <!-- JS 判斷是否有重複帳號，回傳相對應訊息 -->
+
+ <script src="script.js" defer></script>
+</body>

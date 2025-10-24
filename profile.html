@@ -1,0 +1,67 @@
+<head>
+    <title>詳細個人資料</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>詳細個人資料</h1>
+        <nav id="navbar">
+            <a href="index.html">首頁</a>
+            <a href="record.html">填寫</a>
+            <a href="report.html">紀錄</a>
+            <a href="account.html">帳號管理</a>
+        </nav>
+    </header>
+
+    <form id="profileForm">
+        <!-- 基本資料 -->
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">電子郵件：</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">電話：</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="birth">生日：</label>
+        <input type="date" id="birth" name="birth" required>
+
+        <label for="gender">性別：</label>
+        <select id="gender" name="gender" required>
+            <option value="">請選擇</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+            <option value="其他">其他</option> 
+        </select>
+
+        <!-- 糖尿病相關 -->
+        <label for="diabetesType">糖尿病類型：</label>
+        <label><input type="radio" name="diabetesType" value="第一型" required> 第一型</label>
+        <label><input type="radio" name="diabetesType" value="第二型"> 第二型</label>
+        <label><input type="radio" name="diabetesType" value="妊娠型"> 妊娠型</label>
+        <label><input type="radio" name="diabetesType" value="其他"> 其他</label>
+        <input type="text" id="diabetesTypeOther" name="diabetesTypeOther" 
+            placeholder="請填寫其他類型" style="display:none; margin-left:10px;">
+
+        <label for="treatment">目前治療方式：</label>
+        <input type="text" id="treatment" name="treatment" required>
+
+        <label for="diagnosisDate">確診糖尿病時間：</label>
+        <input type="date" id="diagnosisDate" name="diagnosisDate" required>
+
+        <label for="familyHistory">家族病史：</label>
+        <select id="familyHistory" name="familyHistory" required>
+            <option value="">請選擇</option>
+            <option value="有">有</option>
+            <option value="沒有">沒有</option> 
+        </select>
+
+        <button type="submit">儲存資料</button>
+
+    </form>
+
+    <script src="script.js" defer></script>
+
+</body>

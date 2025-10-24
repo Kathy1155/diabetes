@@ -1,0 +1,383 @@
+/* =========================
+   基礎工具
+========================= */
+.hidden { display: none !important; }
+
+/* =========================
+   全域 / 版面
+========================= */
+:root{
+  --nav:#356B9A;
+  --text:#333;
+  --bg:#f7f9fc;
+  --card:#fff;
+  --border:#ddd;
+  --primary:#4CAF50;
+  --primary-hover:#45a049;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{ height:100%; }
+
+body{
+  font-family:"Microsoft JhengHei", Arial, sans-serif;
+  color:var(--text);
+  background-color:var(--bg);
+  margin:0;
+  padding:20px;
+  line-height:1.6;
+}
+
+/* =========================
+   導覽列
+========================= */
+nav{
+  background-color:var(--nav);
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  border-radius:6px;
+  margin-bottom:20px;
+  gap:16px;
+}
+nav .nav-links{ flex:1; text-align:center; }
+.avatar-link{ margin-left:auto; }
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  padding:6px 8px;
+  border-radius:6px;
+}
+nav a:hover{ background:rgba(255,255,255,.15); }
+
+/* =========================
+   文字 / 排版
+========================= */
+h1{
+  text-align:center;
+  color:#2c3e50;
+  margin:8px 0 20px;
+}
+h2, h3{
+  color:#34495e;
+  margin-top:30px;
+}
+h2{
+  border-left:5px solid #3498db;
+  padding-left:8px;
+}
+p{ margin-bottom:15px; text-align:justify; }
+ol{ margin-left:25px; }
+
+/* 區塊寬度控制（文章、列表等主內容） */
+section{
+  margin:30px auto;
+  max-width:900px;
+  padding:15px;
+}
+
+/* 連結（內容區用） */
+a{ color:#007BFF; }
+a:hover{ color:#0056b3; }
+
+/* =========================
+   圖片 / 表格
+========================= */
+img{
+  display:block;
+  margin:15px auto;
+  width:80%;
+  max-width:600px;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+table{
+  border-collapse:collapse;
+  margin:20px auto;
+  width:90%;
+  max-width:800px;
+  text-align:center;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+caption{
+  font-size:1.2em;
+  font-weight:bold;
+  margin-bottom:10px;
+  color:#2c3e50;
+}
+th, td{ border:1px solid #ccc; padding:10px; }
+th{ background:#f2f2f2; }
+
+/* =========================
+   表單（一般頁面）
+========================= */
+form{
+  max-width:600px;
+  margin:20px auto;
+  padding:15px;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+label{ display:block; margin-top:10px; font-weight:bold; }
+input[type="text"],
+input[type="number"],
+textarea,
+select{
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:4px;
+}
+input[type="radio"],
+input[type="checkbox"]{ margin-right:5px; margin-left:10px; }
+.form-group{
+  margin-top:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.form-group label{
+  margin:0;
+  font-weight:normal;
+  display:flex;
+  align-items:center;
+}
+textarea{ resize:vertical; }
+
+/* 按鈕（通用） */
+button{
+  margin-top:15px;
+  padding:10px 20px;
+  background:var(--primary);
+  border:none;
+  color:#fff;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:1em;
+}
+button:hover{ background:var(--primary-hover); }
+
+/* =========================
+   Header / Footer
+========================= */
+header{
+  background:#f8f9fa;
+  padding:20px;
+  text-align:center;
+  border-bottom:2px solid #ddd;
+}
+footer{
+  background:var(--nav);
+  color:#fff;
+  text-align:center;
+  padding:15px;
+  margin-top:30px;
+  border-radius:6px;
+}
+
+/* 頭像 */
+.avatar{
+  width:32px; height:32px; border-radius:50%;
+  vertical-align:middle; cursor:pointer;
+}
+
+/* =========================
+   諮詢元件（index/consult）
+========================= */
+#consultForm{
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
+}
+#consultForm input{
+  flex:1; max-width:400px; padding:10px; font-size:1rem;
+  border:1px solid #ccc; border-radius:6px; outline:none;
+  transition:border-color .3s ease;
+}
+#consultForm input:focus{ border-color:#3498db; }
+#consultForm button{
+  margin-left:10px; padding:10px 16px; font-size:1rem;
+  background:#3498db; border:none; border-radius:6px;
+  transition:background-color .3s ease;
+}
+#consultForm button:hover{ background:#2980b9; }
+
+#consultList{ max-width:600px; margin:0 auto; }
+.consult-item{
+  background:#fff; border:1px solid #ddd; border-radius:8px;
+  padding:12px 15px; margin-bottom:12px;
+  box-shadow:0 2px 5px rgba(0,0,0,.05);
+}
+.consult-item .time{ font-size:.85rem; color:#888; margin-top:6px; text-align:right; }
+
+.consult-box{
+  background:#f9f9f9; border:1px solid #ddd; border-radius:8px;
+  padding:15px; min-height:80px;
+}
+.consult-box .question{
+  padding:10px; margin-bottom:8px; background:#fff;
+  border:1px solid #e5e5e5; border-radius:6px; font-size:15px; line-height:1.4;
+  transition:background .2s;
+}
+.consult-box .question:hover{ background:#f0f8ff; }
+section a{
+  display:inline-block; margin-top:10px; font-size:14px; color:#0077cc;
+  text-decoration:none; transition:color .2s;
+}
+section a:hover{ color:#005fa3; text-decoration:underline; }
+
+/* =========================
+   忘記密碼 / 重設密碼（reset.html 專用）
+   - 不影響其它頁，全部鎖在 #resetContainer 範圍
+========================= */
+#resetContainer{
+  width:min(92vw, 560px);
+  margin:16px auto 32px;              /* 水平置中 */
+  background:var(--card);
+  padding:24px 20px;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  box-shadow:0 8px 24px rgba(16,24,40,.08);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;                  /* 內容水平置中 */
+  gap:20px;
+}
+
+/* 三個步驟區塊（表單 / 安全問題 / 新密碼） */
+#resetContainer #resetForm,
+#resetContainer #securitySection,
+#resetContainer #newPasswordSection{
+  width:100%;
+  max-width:420px;
+
+  display:flex;                        /* 讓 JS 顯示時可用 flex */
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+
+/* 只在 reset 內調整欄位寬度 */
+#resetContainer label{
+  align-self:flex-start;
+  font-weight:600;
+}
+#resetContainer input[type="text"],
+#resetContainer input[type="password"]{
+  width:100%;
+  max-width:320px;
+  padding:10px 12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:1rem;
+  outline:none;
+}
+#resetContainer input:focus{
+  border-color:#9ca3af;
+  box-shadow:0 0 0 3px rgba(34,197,94,.15);
+}
+/* 按鈕（限 reset 容器內） */
+#resetContainer button{
+  padding:10px 18px;
+  background:var(--primary);
+  color:#fff;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:1rem;
+  font-weight:600;
+}
+#resetContainer button:hover{ background:var(--primary-hover); }
+
+/* 安全問題文字 */
+#securityQuestionText{
+  text-align:center;
+  font-weight:700;
+  font-size:1.1rem;
+  margin:10px 0 6px;
+}
+
+/* 成功/錯誤訊息（放容器外也常用，所以不加範圍） */
+#resetMessage{
+  text-align:center;
+  margin:8px 0 24px;
+  font-weight:600;
+}
+
+/* RWD */
+@media (max-width:480px){
+  #resetContainer{ padding:20px 16px; }
+  #resetContainer input[type="text"],
+  #resetContainer input[type="password"]{ max-width:100%; }
+}
+
+/* ===== 密碼強度條 ===== */
+.pw-wrap { width:100%; max-width:420px; margin-top:6px; }
+.pw-meter {
+  height:8px; background:#e5e7eb; border-radius:6px; overflow:hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.06);
+}
+.pw-bar { height:100%; width:0%; background:#ef4444; transition:width .25s ease; }
+.pw-label { margin-top:6px; font-size:.92rem; font-weight:600; }
+.pw-tips { margin-top:6px; font-size:.9rem; color:#666; }
+.pw-tips ul { margin:4px 0 0 16px; padding:0; }
+.pw-tips li { margin:2px 0; }
+
+/* ---- 共用卡片小樣式（提醒頁用） ---- */
+.card {
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+  padding:16px 16px 18px; margin:16px auto; box-shadow:0 4px 14px rgba(16,24,40,.06);
+}
+.max-600 { max-width: 600px; }
+.muted { color:#666; font-size:.95rem; margin:6px 0 10px; }
+
+.row { display:flex; align-items:center; gap:10px; }
+.spacer { flex:1; }
+
+.week-grid {
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:8px 12px;
+  margin:8px 0 6px;
+}
+@media (max-width: 480px){
+  .week-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+/* 列表 */
+.list .item {
+  display:flex; align-items:center; gap:10px;
+  border:1px solid #eee; border-radius:10px; padding:10px 12px; margin:8px 0;
+}
+.list .meta { flex:1; }
+.badge {
+  display:inline-block; padding:2px 8px; border-radius:999px; font-size:.8rem; background:#eef2ff; color:#3730a3;
+  margin-left:6px;
+}
+
+/* 按鈕 */
+.btn { padding:8px 14px; border-radius:8px; border:none; cursor:pointer; }
+.btn.secondary { background:#e5e7eb; color:#111827; }
+.btn.secondary:hover { background:#d1d5db; }
+.button { padding:10px 16px; background:#4CAF50; color:#fff; border:none; border-radius:8px; cursor:pointer; }
+.button:hover { background:#45a049; }
+.switch { transform: scale(1.1); }
+
+/* 站內提醒橫幅（頁面開著時） */
+.inapp-alert {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  background: #fff7ed; color: #92400e; border: 1px solid #fed7aa;
+  border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  padding: 10px 14px; z-index: 9999; display: none; gap: 10px; align-items: center;
+}
+.inapp-alert.show { display: flex; }
+.inapp-alert .btn { padding: 6px 10px; border-radius: 8px; border: none; cursor: pointer; }
+.inapp-alert .btn.primary { background: #4CAF50; color: #fff; }
+.inapp-alert .btn.secondary { background: #e5e7eb; color: #111827; }

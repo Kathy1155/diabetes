@@ -1,0 +1,66 @@
+<head>
+  <title>帳號管理</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>帳號管理</h1>
+    <nav id="navbar">
+      <a href="index.html">首頁</a>
+      <a href="record.html">填寫</a>
+      <a href="report.html">紀錄</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 顯示使用者資訊 -->
+    <section>
+      <h2>詳細個人資料</h2>
+      <h3>基本資料</h3>
+      <p id="name">姓名:</p>
+      <p id="email">電子郵件:</p>
+      <p id="phone">電話:</p>
+      <p id="birth">生日:</p>
+      <p id="gender">性別:</p>
+
+      <h3>糖尿病資料</h3>
+      <p id="diabetesType">糖尿病類型：</p>
+      <p id="treatment">目前治療方式：</p>
+      <p id="diagnosisDate">確診糖尿病時間：</p>
+      <p id="familyHistory">家族病史：</p>
+
+
+      <button id="profileBtn" class="action-btn">編輯個人資料</button>  
+    </section>
+
+    <!-- 修改密碼 -->
+    <section>
+    <h2>修改密碼</h2>
+    <form id="changePasswordForm">
+      <label>舊密碼：
+        <input type="password" id="oldPassword" required />
+      </label>
+      <br>
+      <label>新密碼：
+        <input type="password" id="newPassword" required />
+      </label>
+      <br>
+      <label>確認新密碼：
+        <input type="password" id="confirmPassword" required />
+      </label>
+      <br>
+      <button type="submit">修改密碼</button>
+      <p id="changePasswordMessage"></p>
+    </form>
+
+    </section>
+
+    <!-- 登出 -->
+    <section>
+      <button id="logoutBtn" class="action-btn">登出</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

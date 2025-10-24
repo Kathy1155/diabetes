@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>吃藥提醒</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="index.html">首頁</a>
+    <a href="signup.html">註冊</a>
+    <a href="login.html">登入</a>
+    <!-- 登入後 script.js 會自動插入：填寫 / 紀錄 / 帳號 / 提醒 -->
+  </nav>
+
+  <h1>吃藥提醒</h1>
+
+  <section class="card max-600">
+    <p><b>使用說明：</b>第一次使用請允許瀏覽器的「顯示通知」權限；若被阻擋，請用下方的 .ics 匯出到手機行事曆。</p>
+    <div id="notifStatus" class="muted"></div>
+    <button id="btnAskPerm" class="btn secondary">允許通知權限</button>
+    <button id="btnTestNotif" class="button">立即測試通知</button>
+  </section>
+
+  <section class="card max-600">
+    <h2>新增提醒</h2>
+    <form id="reminderForm">
+      <label>標題（例如：早餐藥）</label>
+      <input type="text" id="r_title" required placeholder="例如：早餐後 1 顆二甲雙胍">
+
+      <label>時間</label>
+      <input type="time" id="r_time" required>
+
+      <label>星期（至少勾一個）</label>
+      <div class="week-grid">
+        <label><input type="checkbox" name="r_days" value="1"> 週一</label>
+        <label><input type="checkbox" name="r_days" value="2"> 週二</label>
+        <label><input type="checkbox" name="r_days" value="3"> 週三</label>
+        <label><input type="checkbox" name="r_days" value="4"> 週四</label>
+        <label><input type="checkbox" name="r_days" value="5"> 週五</label>
+        <label><input type="checkbox" name="r_days" value="6"> 週六</label>
+        <label><input type="checkbox" name="r_days" value="0"> 週日</label>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="r_everyday"> 每天</label>
+        <span class="spacer"></span>
+        <button class="button" type="submit">加入提醒</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card max-600">
+    <h2>我的提醒</h2>
+    <div id="remindersEmpty" class="muted">目前沒有提醒。</div>
+    <div id="remindersList" class="list"></div>
+  </section>
+
+  <section class="card max-600">
+    <h2>匯出到行事曆（備用）</h2>
+    <p>若瀏覽器無法顯示通知，可匯出 <code>.ics</code> 檔加入手機行事曆。</p>
+    <button id="btnExportICS" class="btn secondary">下載 .ics</button>
+  </section>
+
+  <section class="card max-600">
+    <h2>今日吃藥清單</h2>
+    <div id="todayMeds"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 糖尿病小護士</p>
+  </footer>
+</body>
+</html>

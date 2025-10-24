@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>線上諮詢</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">首頁</a>
+            <a href="signup.html">註冊</a>
+            <a href="login.html">登入</a>
+            <!-- 「填寫」「紀錄」「諮詢」要登入後才會加進來 -->
+        </nav>
+    </header>
+  <h1>線上諮詢 💬</h1>
+
+  <form id="consultForm">
+    <input type="text" id="questionInput" placeholder="輸入你的問題..." required>
+    <button type="submit">送出</button>
+  </form>
+
+  <h2>歷史問題</h2>
+  <div id="consultList"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
