@@ -1,67 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
-    <title>詳細個人資料</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>編輯個人資料｜糖尿病健康管理</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
+<body data-page="profile">
+  <header class="site-header compact">
+    <nav id="navbar" class="navbar" aria-label="主選單"></nav>
+    <h1>編輯個人資料</h1>
+    <p>補充健康背景，讓紀錄內容更完整。</p>
+  </header>
 
-<body>
-    <header>
-        <h1>詳細個人資料</h1>
-        <nav id="navbar">
-            <a href="index.html">首頁</a>
-            <a href="record.html">填寫</a>
-            <a href="report.html">紀錄</a>
-            <a href="account.html">帳號管理</a>
-        </nav>
-    </header>
+  <main class="page-shell narrow">
+    <form id="profileForm" class="form-card">
+      <label for="name">姓名</label>
+      <input type="text" id="name" name="name" required />
 
-    <form id="profileForm">
-        <!-- 基本資料 -->
-        <label for="name">姓名：</label>
-        <input type="text" id="name" name="name" required>
+      <label for="email">電子郵件</label>
+      <input type="email" id="email" name="email" required />
 
-        <label for="email">電子郵件：</label>
-        <input type="email" id="email" name="email" required>
+      <label for="phone">電話</label>
+      <input type="tel" id="phone" name="phone" required />
 
-        <label for="phone">電話：</label>
-        <input type="tel" id="phone" name="phone" required>
+      <label for="birth">生日</label>
+      <input type="date" id="birth" name="birth" required />
 
-        <label for="birth">生日：</label>
-        <input type="date" id="birth" name="birth" required>
+      <label for="gender">性別</label>
+      <select id="gender" name="gender" required>
+        <option value="">請選擇</option>
+        <option value="女性">女性</option>
+        <option value="男性">男性</option>
+        <option value="其他">其他</option>
+      </select>
 
-        <label for="gender">性別：</label>
-        <select id="gender" name="gender" required>
-            <option value="">請選擇</option>
-            <option value="男">男</option>
-            <option value="女">女</option>
-            <option value="其他">其他</option> 
-        </select>
+      <fieldset>
+        <legend>糖尿病類型</legend>
+        <label class="choice"><input type="radio" name="diabetesType" value="第一型糖尿病" required />第一型糖尿病</label>
+        <label class="choice"><input type="radio" name="diabetesType" value="第二型糖尿病" />第二型糖尿病</label>
+        <label class="choice"><input type="radio" name="diabetesType" value="妊娠糖尿病" />妊娠糖尿病</label>
+        <label class="choice"><input type="radio" name="diabetesType" value="其他" />其他</label>
+      </fieldset>
+      <input type="text" id="diabetesTypeOther" name="diabetesTypeOther" class="hidden" placeholder="請輸入其他類型" />
 
-        <!-- 糖尿病相關 -->
-        <label for="diabetesType">糖尿病類型：</label>
-        <label><input type="radio" name="diabetesType" value="第一型" required> 第一型</label>
-        <label><input type="radio" name="diabetesType" value="第二型"> 第二型</label>
-        <label><input type="radio" name="diabetesType" value="妊娠型"> 妊娠型</label>
-        <label><input type="radio" name="diabetesType" value="其他"> 其他</label>
-        <input type="text" id="diabetesTypeOther" name="diabetesTypeOther" 
-            placeholder="請填寫其他類型" style="display:none; margin-left:10px;">
+      <label for="treatment">目前治療方式</label>
+      <input type="text" id="treatment" name="treatment" placeholder="例如：飲食控制、運動、口服藥、胰島素" required />
 
-        <label for="treatment">目前治療方式：</label>
-        <input type="text" id="treatment" name="treatment" required>
+      <label for="diagnosisDate">確診時間</label>
+      <input type="date" id="diagnosisDate" name="diagnosisDate" required />
 
-        <label for="diagnosisDate">確診糖尿病時間：</label>
-        <input type="date" id="diagnosisDate" name="diagnosisDate" required>
+      <label for="familyHistory">家族病史</label>
+      <select id="familyHistory" name="familyHistory" required>
+        <option value="">請選擇</option>
+        <option value="有">有</option>
+        <option value="沒有">沒有</option>
+        <option value="不確定">不確定</option>
+      </select>
 
-        <label for="familyHistory">家族病史：</label>
-        <select id="familyHistory" name="familyHistory" required>
-            <option value="">請選擇</option>
-            <option value="有">有</option>
-            <option value="沒有">沒有</option> 
-        </select>
-
-        <button type="submit">儲存資料</button>
-
+      <button type="submit" class="button full">儲存資料</button>
+      <p id="profileMessage" class="form-message" aria-live="polite"></p>
     </form>
-
-    <script src="script.js" defer></script>
-
+  </main>
 </body>
+</html>

@@ -1,141 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <title>糖尿病小護士</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>糖尿病健康管理</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
+<body data-page="home">
+  <header class="site-header">
+    <nav id="navbar" class="navbar" aria-label="主選單"></nav>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">健康紀錄與用藥提醒</p>
+        <h1>管理血糖、用藥與日常健康</h1>
+        <p class="hero-copy">
+          每天花一點時間記錄血糖、體重和用藥，幫助自己和家人更清楚掌握健康狀況。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="record.html">新增今日紀錄</a>
+          <a class="button secondary" href="report.html">查看健康報表</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="功能摘要">
+        <div class="metric-card">
+          <span>紀錄項目</span>
+          <strong>6+</strong>
+          <small>血糖、體重、運動、用藥、備註</small>
+        </div>
+        <div class="metric-card">
+          <span>資料保存</span>
+          <strong>這台裝置</strong>
+          <small>資料會保存在目前使用的裝置中</small>
+        </div>
+      </div>
+    </section>
+  </header>
 
-<body>
-    <!-- 頁首 -->
-    <header>
-        <nav id="navbar">
-        <a href="index.html">首頁</a>
-        <a href="signup.html">註冊</a>
-        <a href="login.html">登入</a>
-        <!-- 「填寫」「紀錄」要登入後才會加進來 -->
-        </nav>
+  <main class="page-shell">
+    <section class="section-grid">
+      <article class="feature-card">
+        <h2>每日健康紀錄</h2>
+        <p>填寫日期、體重、飯前與飯後血糖，並補充運動與用藥狀態。</p>
+      </article>
+      <article class="feature-card">
+        <h2>健康報表</h2>
+        <p>自動整理血糖紀錄，讓飯前、飯後血糖變化更容易看懂。</p>
+      </article>
+      <article class="feature-card">
+        <h2>用藥提醒</h2>
+        <p>設定提醒時間與週期，讓每天是否服藥更容易掌握。</p>
+      </article>
+    </section>
 
-        <h1>糖尿病小護士</h1>
-    </header>
+    <section class="content-band">
+      <div>
+        <p class="eyebrow">健康提醒</p>
+        <h2>認識糖尿病</h2>
+        <p>
+          糖尿病是因胰島素分泌不足或作用異常，導致血糖長期偏高的慢性疾病。常見類型包含第一型糖尿病、第二型糖尿病、妊娠糖尿病與其他特殊型糖尿病。
+        </p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>類型</th>
+              <th>常見特徵</th>
+              <th>管理重點</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>第一型</td>
+              <td>多與胰島素分泌不足有關</td>
+              <td>規律監測血糖與胰島素治療</td>
+            </tr>
+            <tr>
+              <td>第二型</td>
+              <td>常與生活型態、體重、家族史相關</td>
+              <td>飲食、運動、藥物與體重管理</td>
+            </tr>
+            <tr>
+              <td>妊娠型</td>
+              <td>懷孕期間出現血糖異常</td>
+              <td>產檢追蹤與飲食控制</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <!-- 主要內容 -->
-    <main>
-        <section>
-            <h2>什麼是糖尿病？</h2>
-            <p>
-                糖尿病是一種身體處理糖分出問題的疾病。當我們吃下食物後，身體需要一種叫做
-                <b>胰島素</b>的東西來幫助把糖分送進細胞裡，讓我們有力氣活動。
-            </p>
-            <p>
-                如果胰島素不夠或沒作用，糖分就會留在血液裡，讓血糖變得太高，這就是糖尿病。
-            </p>
-            <p>
-                得了糖尿病的人會常常口渴、想上廁所、覺得累，但只要好好控制飲食和運動，就能把它照顧好。
-            </p>
-        </section>
+    <section class="split-section">
+      <div>
+        <h2>近期諮詢</h2>
+        <p>可以先把想問的問題記下來，看診或衛教時比較不容易忘記。</p>
+        <a class="text-link" href="consult.html">前往諮詢留言</a>
+      </div>
+      <div class="list-panel" id="latestConsults"></div>
+    </section>
 
-        <section>
-            <h2>常見糖尿病種類</h2>
-            <img 
-                src="https://www-ws.gov.taipei/001/Upload/684/relpic/45208/137453/9c3a93a9-4be9-49f0-a9f2-13ecc4940023.jpg" 
-                alt="哎呀...網路不太好！！"
-            />
+    <section class="resource-section">
+      <h2>延伸參考</h2>
+      <p>正式醫療建議仍應以醫師、營養師與可信任衛教資料為準。</p>
+      <a class="text-link" href="https://www.hpa.gov.tw/Pages/List.aspx?nodeid=359" target="_blank" rel="noreferrer">
+        衛生福利部國民健康署糖尿病防治資料
+      </a>
+    </section>
+  </main>
 
-            <table>
-                <caption>糖尿病種類簡易表格整理</caption>
-                <thead>
-                    <tr>
-                        <th>種類</th>
-                        <th>原因</th>
-                        <th>特點</th>
-                        <th>易發族群</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>第一型</td>
-                        <td>遺傳</td>
-                        <td>無胰島素，終身注射</td>
-                        <td>小孩、青少年</td>
-                    </tr>
-                    <tr>
-                        <td>第二型</td>
-                        <td>家族病、生活</td>
-                        <td>有胰島素沒作用，藥+生活習慣改善</td>
-                        <td>中年人、長輩</td>
-                    </tr>
-                    <tr>
-                        <td>妊娠型</td>
-                        <td>懷孕賀爾蒙變化</td>
-                        <td>通常生完恢復</td>
-                        <td>懷孕女性</td>
-                    </tr>
-                    <tr>
-                        <td>其他型</td>
-                        <td>其他疾病引發</td>
-                        <td>與特定疾病或藥物有關，可預防</td>
-                        <td>無</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <ol>
-                <li>
-                    <strong>第一型糖尿病(遺傳性)</strong>
-                    <p>這種糖尿病通常在年紀很小的時候就會發病...</p>
-                    <ul>
-                        <li>特點：年紀小、發病快、需要終身注射胰島素。</li>
-                        <li>常見於：小孩、青少年，也叫做「兒童型糖尿病」</li>
-                    </ul>   
-                </li>
-                <li>
-                    <strong>第二型糖尿病(家族病史＋生活習慣)</strong>
-                    <p>這是 <b>最常見</b> 的糖尿病類型...</p>
-                    <ul>
-                        <li>特點：發病慢、不一定要打針，可用藥＋生活改善控制。</li>
-                        <li>常見於：中年人、長輩，但現在也有年輕人因生活習慣不良而得到。</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>妊娠糖尿病(懷孕賀爾蒙變化)</strong>
-                    <p>這是 <b>懷孕中的女性</b> 才會有的糖尿病...</p>
-                    <ul>
-                        <li>特點：懷孕期間才發生，通常生完會恢復。</li>
-                        <li>需要注意：控制不好會影響胎兒健康，也可能增加媽媽未來得糖尿病的機率。</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>其他糖尿病(其他疾病引起)</strong>
-                    <p>除了以上三種，還有一些比較少見的糖尿病...</p>
-                    <ul>
-                        <li>胰臟本身的疾病（像胰臟炎、胰臟癌）</li>
-                        <li>某些內分泌疾病（賀爾蒙分泌異常）</li>
-                        <li>長期使用某些藥物（如類固醇）</li>
-                    </ul>
-                </li>
-            </ol>
-        </section>
-
-        <section>
-            <h2>最新諮詢</h2>
-            <div class="consult-box" id="latestConsults"></div>
-            <a href="consult.html">查看更多 →</a>
-
-            <script src="script.js"></script>
-        </section>
-
-        <section>
-            <h3>延伸閱讀：衛服部-糖尿病</h3>
-            <a href="https://www.hpa.gov.tw/Pages/List.aspx?nodeid=359" target="_blank">
-                點我前往官方說明
-            </a>
-        </section>
-    </main>
-
-    <!-- 頁尾 -->
-    <footer>
-        <p>© 2025 糖尿病小護士</p>
-    </footer>
+  <footer class="site-footer">
+    <p>© 2026 糖尿病健康管理系統</p>
+  </footer>
 </body>
 </html>

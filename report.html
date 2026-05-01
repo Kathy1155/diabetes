@@ -1,126 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>趨勢報表｜糖尿病健康管理</title>
   <link rel="stylesheet" href="style.css" />
-  <title>狀態記錄頁面</title>
+  <script src="node_modules/chart.js/dist/chart.umd.js"></script>
+  <script src="script.js" defer></script>
 </head>
+<body data-page="report">
+  <header class="site-header compact">
+    <nav id="navbar" class="navbar" aria-label="主選單"></nav>
+    <h1>血糖趨勢報表</h1>
+    <p>將每日紀錄整理為表格與折線圖，方便觀察血糖變化。</p>
+  </header>
 
-<table border="1" style="margin: 0 auto; text-align: center">
-    <nav id="navbar">
-        <a href="index.html">首頁</a>
-        <a href="report.html">紀錄</a>
-        <a href="record.html">填寫</a>
-        <a href="signup.html">註冊</a>
-        <a href="login.html">登入</a>
-    </nav>
+  <main class="page-shell">
+    <section class="summary-grid" id="reportSummary"></section>
 
-  <h1>糖尿病病患紀錄表</h1>
+    <section class="chart-card">
+      <div class="section-title-row">
+        <h2>血糖折線圖</h2>
+        <button id="btnExportCSV" class="button secondary">下載紀錄</button>
+      </div>
+      <canvas id="glucoseChart" height="120"></canvas>
+    </section>
 
-  <button id="btnExportCSV" class="btn secondary">匯出 CSV</button>
-
-  <thead>
-    <tr>
-      <th>日期</th>
-      <th>體重(Kg)</th>
-      <th>運動狀況</th>
-      <th>藥物使用</th>
-      <th>餐前血糖</th>
-      <th>餐後血糖</th>
-      <th>血糖狀態</th>
-      <th>備註</th>
-    </tr>
-  </thead>
-  <tbody id="reportBody"></tbody>
-
-  <div style="width: 65%; margin: 20px auto">
-    <canvas id="glucoseChart"></canvas>
-  </div>
-</table>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const records = JSON.parse(localStorage.getItem("records")) || [];
-    const tbody = document.getElementById("reportBody");
-
-    function getGlucoseStatus(v) {
-      const val = parseInt(v, 10);
-      if (isNaN(val)) return "未知";
-      if (val < 70) return "過低";
-      if (val <= 140) return "正常";
-      if (val <= 200) return "偏高";
-      return "過高";
-    }
-
-    records.forEach((record) => {
-      const row = document.createElement("tr");
-
-      const exerciseText =
-        record.exercise === "yes"
-          ? "有" + (record.exercise_detail ? `，${record.exercise_detail}` : "")
-          : "沒有";
-
-      const medText =
-        record.medication === "yes"
-          ? record.medication_time +
-            (record.medication_name ? `，${record.medication_name}` : "")
-          : "沒有";
-
-      row.innerHTML = `
-            <td>${record.date}</td>
-            <td>${record.weight}</td>
-            <td>${exerciseText}</td>
-            <td>${medText}</td>
-            <td>${record.bf_glucose}</td>
-            <td>${record.af_glucose}</td>
-            <td>${getGlucoseStatus(record.af_glucose)}</td>
-            <td>${record.remark || ""}</td>
-        `;
-
-      tbody.appendChild(row);
-    });
-
-    const ctx = document.getElementById("glucoseChart").getContext("2d");
-
-    const labels = records.map((r) => r.date);
-    const bfData = records.map((r) => r.bf_glucose);
-    const afData = records.map((r) => r.af_glucose);
-
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "餐前血糖",
-            data: bfData,
-            borderColor: "blue",
-            fill: false,
-          },
-          {
-            label: "餐後血糖",
-            data: afData,
-            borderColor: "red",
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            title: {
-              display: true,
-              text: "血糖值 (mg/dL)",
-            },
-          },
-          x: {
-            title: {
-              display: true,
-              text: "日期",
-            },
-          },
-        },
-      },
-    });
-  });
-</script>
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>體重</th>
+            <th>運動</th>
+            <th>用藥</th>
+            <th>飯前血糖</th>
+            <th>飯後血糖</th>
+            <th>狀態</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody id="reportBody"></tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

@@ -2,46 +2,44 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>忘記密碼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>重設密碼｜糖尿病健康管理</title>
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
+<body data-page="reset">
+  <header class="site-header compact">
+    <nav id="navbar" class="navbar" aria-label="主選單"></nav>
+    <h1>重設密碼</h1>
+    <p>先確認帳號與安全問題，再設定新的密碼。</p>
+  </header>
 
-<body>
-  <!-- 導覽列 -->
-  <nav id="navbar">
-    <a href="index.html">首頁</a>
-    <a href="signup.html">註冊</a>
-    <a href="login.html">登入</a>
-  </nav>
+  <main class="page-shell narrow">
+    <section id="resetContainer" class="form-card">
+      <form id="resetForm">
+        <label for="resetUsername">帳號</label>
+        <input type="text" id="resetUsername" required />
+        <button type="submit" class="button full">確認帳號</button>
+      </form>
 
-  <h1>重設密碼</h1>
+      <div id="securitySection" class="hidden">
+        <p id="securityQuestionText" class="question-text"></p>
+        <label for="securityAnswerInput">安全問題答案</label>
+        <input type="text" id="securityAnswerInput" required />
+        <button type="button" id="checkAnswerBtn" class="button full">送出答案</button>
+      </div>
 
-  <div id="resetContainer">
-    <!-- 第一步：輸入帳號 -->
-    <form id="resetForm">
-      <label for="resetUsername">帳號名：</label>
-      <input type="text" id="resetUsername" required />
-      <button type="submit">確認帳號</button>
-    </form>
+      <div id="newPasswordSection" class="hidden">
+        <label for="newPassword">新密碼</label>
+        <div class="input-row">
+          <input type="password" id="newPassword" required />
+          <button type="button" class="icon-button" id="btnTogglePwd">顯示</button>
+        </div>
+        <button type="button" id="resetPasswordBtn" class="button full">更新密碼</button>
+      </div>
 
-    <!-- 第二步：顯示安全問題，輸入答案 -->
-    <div id="securitySection" class="hidden">
-      <p id="securityQuestionText"></p>
-      <label for="securityAnswerInput">答案：</label>
-      <input type="text" id="securityAnswerInput" required />
-      <button type="button" id="checkAnswerBtn">送出答案</button>
-    </div>
-
-    <!-- 第三步：輸入新密碼 -->
-    <div id="newPasswordSection" class="hidden">
-      <label for="newPassword">新密碼：</label>
-      <input type="password" id="newPassword" required />
-      <button type="button" class="btn secondary" id="btnTogglePwd">顯示</button>
-      <button type="button" id="resetPasswordBtn">重設密碼</button>
-    </div>
-  </div>
-
-  <p id="resetMessage" aria-live="polite"></p>
+      <p id="resetMessage" class="form-message" aria-live="polite"></p>
+    </section>
+  </main>
 </body>
 </html>
