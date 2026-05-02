@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const loggedInUser = () => localStorage.getItem("loggedInUser") || "";
+  const userKey = (base) => `${base}_${loggedInUser() || "guest"}`;
   const makeId = () => {
     if (window.crypto?.randomUUID) return window.crypto.randomUUID();
     return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -396,7 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getUserRecords() {
     const user = loggedInUser();
-    return storage.get("records", []).filter((record) => !record.user || record.user === user);
+    return storage.get("records", []).filter((record) => record.user === user);
   }
 
   function glucoseStatus(value) {
@@ -523,7 +524,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderList(target, limit) {
       if (!target) return;
       const consultations = storage.get("consultations", []);
-      const data = consultations.slice(-limit || undefined).reverse();
+      const user = loggedInUser();
+      const visible = user ? consultations.filter((item) => item.user === user) : consultations.filter((item) => !item.user || item.user === "訪客");
+      const data = visible.slice(-limit || undefined).reverse();
       if (!data.length) {
         target.innerHTML = `<p class="muted">目前還沒有留言。</p>`;
         return;
@@ -562,7 +565,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = $("#profileForm");
     if (!form) return;
     const message = $("#profileMessage");
-    const profile = storage.get("userProfile", {});
+    const profiles = storage.get("userProfiles", {});
+    const profile = profiles[loggedInUser()] || {};
     const otherInput = $("#diabetesTypeOther");
 
     ["name", "email", "phone", "birth", "gender", "treatment", "diagnosisDate", "familyHistory"].forEach((key) => {
@@ -607,7 +611,9 @@ document.addEventListener("DOMContentLoaded", () => {
         diagnosisDate: form.elements.diagnosisDate.value,
         familyHistory: form.elements.familyHistory.value,
       };
-      storage.set("userProfile", data);
+      const profiles = storage.get("userProfiles", {});
+      profiles[loggedInUser()] = data;
+      storage.set("userProfiles", profiles);
       setMessage(message, "個人資料已儲存。", "success");
       setTimeout(() => {
         window.location.href = "account.html";
@@ -617,7 +623,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initAccount() {
     if (page !== "account") return;
-    const profile = storage.get("userProfile", {});
+    const profiles = storage.get("userProfiles", {});
+    const profile = profiles[loggedInUser()] || {};
     const fields = ["name", "email", "phone", "birth", "gender", "diabetesType", "treatment", "diagnosisDate", "familyHistory"];
     fields.forEach((key) => {
       const el = $(`#${key}`);
@@ -666,7 +673,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadReminders() {
     const user = loggedInUser();
-    return storage.get("reminders", []).filter((item) => !item.user || item.user === user);
+    return storage.get("reminders", []).filter((item) => item.user === user);
   }
 
   function saveUserReminders(userReminders) {
@@ -797,11 +804,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getTakenMap() {
-    return storage.get("reminders_taken", {});
+    return storage.get(userKey("reminders_taken"), {});
   }
 
   function saveTakenMap(value) {
-    storage.set("reminders_taken", value);
+    storage.set(userKey("reminders_taken"), value);
   }
 
   function renderTodayMeds() {
