@@ -910,6 +910,107 @@ document.addEventListener("DOMContentLoaded", () => {
     URL.revokeObjectURL(url);
   }
 
+  function seedDemoData() {
+    const demoUser = "demo";
+    const users = storage.get("users", {});
+    if (!users[demoUser]) {
+      users[demoUser] = {
+        password: "Demo1234",
+        securityQuestion: "food",
+        securityAnswer: "蘋果",
+        createdAt: new Date().toISOString(),
+      };
+      storage.set("users", users);
+    }
+
+    const profiles = storage.get("userProfiles", {});
+    if (!profiles[demoUser]) {
+      profiles[demoUser] = {
+        name: "王美惠",
+        email: "demo@example.com",
+        phone: "0912-345-678",
+        birth: "1958-06-12",
+        gender: "女性",
+        diabetesType: "第二型糖尿病",
+        treatment: "飲食控制、規律散步、口服藥",
+        diagnosisDate: "2021-03-18",
+        familyHistory: "有",
+      };
+      storage.set("userProfiles", profiles);
+    }
+
+    const records = storage.get("records", []);
+    if (!records.some((record) => record.user === demoUser)) {
+      const demoRecords = [
+        ["2026-04-25", 66.8, "yes", "晚餐後散步 25 分鐘", "yes", "08:00", "Metformin", 112, 168, "早餐有吃全麥吐司"],
+        ["2026-04-26", 66.7, "yes", "公園散步 30 分鐘", "yes", "08:10", "Metformin", 108, 158, "午餐減少白飯份量"],
+        ["2026-04-27", 66.5, "no", "", "yes", "08:05", "Metformin", 118, 176, "晚餐較晚吃"],
+        ["2026-04-28", 66.4, "yes", "室內伸展 20 分鐘", "yes", "08:00", "Metformin", 106, 152, "精神狀況良好"],
+        ["2026-04-29", 66.3, "yes", "散步 35 分鐘", "yes", "08:15", "Metformin", 102, 148, "飯後血糖較穩定"],
+        ["2026-04-30", 66.2, "no", "", "yes", "08:00", "Metformin", 115, 170, "下午有點心"],
+        ["2026-05-01", 66.1, "yes", "晚餐後散步 30 分鐘", "yes", "08:05", "Metformin", 104, 150, "飲食控制良好"],
+      ].map(([date, weight, exercise, exercise_detail, medication, medication_time, medication_name, bf_glucose, af_glucose, remark], index) => ({
+        id: `demo-record-${index + 1}`,
+        user: demoUser,
+        date,
+        weight,
+        exercise,
+        exercise_detail,
+        medication,
+        medication_time,
+        medication_name,
+        bf_glucose,
+        af_glucose,
+        remark,
+        createdAt: `${date}T09:00:00.000Z`,
+      }));
+      storage.set("records", [...demoRecords, ...records]);
+    }
+
+    const reminders = storage.get("reminders", []);
+    if (!reminders.some((item) => item.user === demoUser)) {
+      storage.set("reminders", [
+        ...reminders,
+        {
+          id: "demo-reminder-breakfast",
+          user: demoUser,
+          title: "早餐後服藥",
+          timeHHMM: "08:00",
+          days: [1, 2, 3, 4, 5, 6, 0],
+          enabled: true,
+          createdAt: "2026-04-25T08:00:00.000Z",
+        },
+        {
+          id: "demo-reminder-walk",
+          user: demoUser,
+          title: "晚餐後散步",
+          timeHHMM: "19:30",
+          days: [1, 2, 3, 4, 5],
+          enabled: true,
+          createdAt: "2026-04-25T19:30:00.000Z",
+        },
+      ]);
+    }
+
+    const consultations = storage.get("consultations", []);
+    if (!consultations.some((item) => item.user === demoUser)) {
+      storage.set("consultations", [
+        ...consultations,
+        {
+          question: "飯後血糖偶爾偏高時，飲食上可以先調整哪些地方？",
+          user: demoUser,
+          time: "2026/5/1 下午 02:30:00",
+        },
+        {
+          question: "如果當天沒有運動，是否需要增加隔天的活動量？",
+          user: demoUser,
+          time: "2026/5/1 下午 03:10:00",
+        },
+      ]);
+    }
+  }
+
+  seedDemoData();
   renderNav();
   if (!requireLogin()) return;
   mountPasswordToggle();
